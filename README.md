@@ -38,4 +38,47 @@ L'application extrait le texte de vos PDF, le segmente, le vectorise avec des em
 ```bash
 git clone https://github.com/votre-utilisateur/multi-pdf-chat-rag.git
 cd multi-pdf-chat-rag
-'''
+```
+### 2. Créer et activer un environnement virtuel
+```
+python -m venv venv
+source venv/bin/activate  # Sur Windows : venv\Scripts\activate
+```
+### 3. Installer les dépendances
+```
+pip install -r requirements.txt
+```
+### 4. Créer un fichier .env
+```
+HUGGINGFACEHUB_API_KEY=your_huggingface_token
+# ou si vous utilisez OpenRouter à la place :
+OPENROUTER_API_KEY=your_openrouter_key
+```
+### Exécution de l'application
+```
+streamlit run app.py
+```
+Puis ouvrez l’application dans votre navigateur à l’adresse [l’adresse](http://localhost:8501)
+
+## Personnalisation
+### Changer de modèle LLM
+**Dans get_conversation_chain() :**
+**- Pour Hugging Face :**
+```
+from langchain_community.llms import huggingface_hub
+llm = huggingface_hub(
+    repo_id="meta-llama/Llama-2-7b-chat-hf",
+    token=os.getenv("HUGGINGFACEHUB_API_KEY"),
+    model_kwargs={"temperature": 0.1, "max_new_tokens": 512}
+)
+```
+**- Pour OpenRouter :**
+```
+from langchain_openai import ChatOpenAI
+llm = ChatOpenAI(
+    model="mistralai/mistral-7b-instruct",
+    openai_api_base="https://openrouter.ai/api/v1",
+    openai_api_key=os.getenv("OPENROUTER_API_KEY")
+)
+```
+
