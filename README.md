@@ -58,11 +58,12 @@ OPENROUTER_API_KEY=your_openrouter_key
 ```
 streamlit run app.py
 ```
-Puis ouvrez l’application dans votre navigateur à l’adresse [l’adresse](http://localhost:8501)
+Puis ouvrez l’application dans votre navigateur à l’adresse [http://localhost:8501]
 
 ## Personnalisation
 ### Changer de modèle LLM
 **Dans get_conversation_chain() :**
+
 **- Pour Hugging Face :**
 ```
 from langchain_community.llms import huggingface_hub
